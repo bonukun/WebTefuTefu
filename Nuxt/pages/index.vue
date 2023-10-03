@@ -48,14 +48,15 @@
 </template>
 
 <script setup lang="ts">
+import { Article } from "~/types/jpa_style/article";
 const default_style = "日本心理学会執筆・投稿の手びき_2015年改訂版";
 
 const handleButtonClick = () => {
-  console.log(authorNum.valueOf);
+  const article = new Article();
+  console.log(article.title);
 };
 
 const authorNum = ref(1);
-
 const authorNum_limit = () => {
   console.log(authorNum.value);
   if (authorNum.value > 20) {
