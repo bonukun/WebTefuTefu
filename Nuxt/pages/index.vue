@@ -14,15 +14,32 @@
       variant="underlined"
     ></v-select>
     <v-textarea label="BibTeXペースト欄"></v-textarea>
-    <v-btn @click="handleButtonClick">BibTeXから書式事項を抽出</v-btn>
-    <v-text-field
-      v-model="authorNum"
-      label="著者の人数を入力"
-      type="number"
-      @input="authorNum_limit"
-      max="20"
-      min="0"
-    ></v-text-field>
+    <v-btn
+      @click="handleButtonClick"
+      class="text-capitalize"
+      style="margin-bottom: 16px"
+      >BibTeXから書式事項を抽出</v-btn
+    >
+    <v-row>
+      <v-col>
+        <v-text-field
+          v-model="authorNum"
+          label="著者の人数を入力"
+          type="number"
+          @input="authorNum_limit"
+          max="20"
+          min="1"
+        ></v-text-field>
+      </v-col>
+      <v-col>
+        <v-btn icon color="red" style="margin-right: 16px" @click="author_add">
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+        <v-btn icon color="blue" @click="author_remove">
+          <v-icon>mdi-minus</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
     <v-row v-for="n in parseInt(authorNum.toString())" :key="n">
       <v-text-field :label="`第${n}著者名を入力`" variant="underlined">
       </v-text-field>
@@ -37,13 +54,26 @@ const handleButtonClick = () => {
   console.log(authorNum.valueOf);
 };
 
-const authorNum = ref(0);
+const authorNum = ref(1);
 
 const authorNum_limit = () => {
   console.log(authorNum.value);
   if (authorNum.value > 20) {
     authorNum.value = 20;
   }
+};
+
+const author_add = () => {
+  if (authorNum.value == 20) {
+    return;
+  }
+  authorNum.value++;
+};
+const author_remove = () => {
+  if (authorNum.value == 1) {
+    return;
+  }
+  authorNum.value--;
 };
 </script>
 
