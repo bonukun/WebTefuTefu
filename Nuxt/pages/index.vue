@@ -14,21 +14,36 @@
       variant="underlined"
     ></v-select>
     <v-textarea label="BibTeXペースト欄"></v-textarea>
-    <v-btn @click="handleButtonClick">書式事項を抽出</v-btn>
+    <v-btn @click="handleButtonClick">BibTeXから書式事項を抽出</v-btn>
     <v-text-field
       v-model="authorNum"
       label="著者の人数を入力"
       type="number"
+      @input="authorNum_limit"
       max="20"
+      min="0"
     ></v-text-field>
+    <v-row v-for="n in parseInt(authorNum.toString())" :key="n">
+      <v-text-field :label="`第${n}著者名を入力`" variant="underlined">
+      </v-text-field>
+    </v-row>
   </v-container>
 </template>
 
-<script setup>
-const authorNum = ref();
+<script setup lang="ts">
 const default_style = "日本心理学会執筆・投稿の手びき_2015年改訂版";
+
 const handleButtonClick = () => {
+  console.log(authorNum.valueOf);
+};
+
+const authorNum = ref(0);
+
+const authorNum_limit = () => {
   console.log(authorNum.value);
+  if (authorNum.value > 20) {
+    authorNum.value = 20;
+  }
 };
 </script>
 
