@@ -18,13 +18,6 @@ export class Article {
   }
 
   to_list = () => {
-    return [
-      this.author,
-      this.year,
-      this.title,
-      this.jounal,
-      this.volume,
-      this.pages,
-    ];
+    return ["author", "year", "title", "jounal", "volume", "pages"];
   };
 }
