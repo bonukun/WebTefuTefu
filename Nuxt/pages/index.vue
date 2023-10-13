@@ -9,6 +9,14 @@
       return-object
     ></v-select>
     <v-select
+      label="登録する文献の言語を選択"
+      v-model="language"
+      :items="['邦文(日本語)', '欧文(外国語)']"
+      @update:model-value=""
+      variant="underlined"
+      return-object
+    ></v-select>
+    <v-select
       label="参考文献の形態を選択"
       :items="['雑誌論文', '図書', 'ウェブサイト']"
       @update:model-value="mediaChange"
@@ -43,8 +51,22 @@
       </v-col>
     </v-row>
     <v-row v-for="n in parseInt(authorNum.toString())" :key="n">
-      <v-text-field :label="`第${n}著者名を入力`" variant="underlined">
-      </v-text-field>
+      <v-col>
+        <v-text-field
+          :label="`第${n}著者の名字を入力`"
+          variant="underlined"
+          v-model="authorLastNames[n - 1]"
+        >
+        </v-text-field>
+      </v-col>
+      <v-col>
+        <v-text-field
+          :label="`第${n}著者の名前を入力`"
+          variant="underlined"
+          v-model="authorFirstNames[n - 1]"
+        >
+        </v-text-field>
+      </v-col>
     </v-row>
     <v-row v-for="n in input_value" :key="n">
       <v-text-field :label="`${n}を入力`"></v-text-field>
@@ -54,11 +76,15 @@
 
 <script setup lang="ts">
 import { Article } from "~/types/jpa_style/article";
+// import { base_ref } from "~/types/jpa_style/article";
 const default_style = "日本心理学会執筆・投稿の手びき_2015年改訂版";
 
+//現在変数出力用として使用
 const handleButtonClick = () => {
   const article = new Article();
   console.log(article.title);
+  console.log(authorFirstNames.value);
+  console.log(authorLastNames.value);
 };
 
 // 著者の人数に関係する処理群
@@ -83,6 +109,9 @@ const author_remove = () => {
   authorNum.value--;
 };
 
+//language変更に関する処理群
+const language = ref("");
+
 //media変更に関係する処理群
 const input_value = ref([""]);
 const mediaChange = (e: any) => {
@@ -94,8 +123,11 @@ const mediaChange = (e: any) => {
 
       break;
   }
-  console.log(input_value);
 };
+
+//著者入力に関わる処理群
+const authorFirstNames = ref([""]);
+const authorLastNames = ref([""]);
 </script>
 
 <style></style>
