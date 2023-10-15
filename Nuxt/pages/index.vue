@@ -82,9 +82,12 @@ const default_style = "日本心理学会執筆・投稿の手びき_2015年改�
 //現在変数出力用として使用
 const handleButtonClick = () => {
   const article = new Article();
-  console.log(article.title);
-  console.log(authorFirstNames.value);
-  console.log(authorLastNames.value);
+  // console.log(article.title);
+  // console.log(language.value);
+  // console.log(authorFirstNames.value);
+  // console.log(authorLastNames.value);
+  getList();
+  console.log(authorList.value);
 };
 
 // 著者の人数に関係する処理群
@@ -110,7 +113,7 @@ const author_remove = () => {
 };
 
 //language変更に関する処理群
-const language = ref("");
+const language = ref("邦文(日本語)");
 
 //media変更に関係する処理群
 const input_value = ref([""]);
@@ -128,6 +131,27 @@ const mediaChange = (e: any) => {
 //著者入力に関わる処理群
 const authorFirstNames = ref([""]);
 const authorLastNames = ref([""]);
+let author = {
+  lastName: "",
+  firstName: "",
+};
+const authorList = ref([author]);
+const getList = () => {
+  authorList.value = []; // リストをクリアしてから再構築
+
+  for (let i = 0; i < authorNum.value; i++) {
+    author = {
+      lastName: authorLastNames.value[i],
+      firstName: authorFirstNames.value[i],
+    };
+    authorList.value.push(author);
+  }
+};
+
+//入力された物に関わる処理群
+interface InputData {
+  author: "as";
+}
 </script>
 
 <style></style>
