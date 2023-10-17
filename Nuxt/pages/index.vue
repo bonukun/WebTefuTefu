@@ -23,7 +23,7 @@
       variant="underlined"
       return-object
     ></v-select>
-    <v-textarea label="BibTeXペースト欄"></v-textarea>
+    <!-- <v-textarea label="BibTeXペースト欄"></v-textarea> -->
     <v-btn
       @click="handleButtonClick"
       class="text-capitalize"
@@ -68,9 +68,13 @@
         </v-text-field>
       </v-col>
     </v-row>
-    <v-row v-for="n in input_value" :key="n">
-      <v-text-field :label="`${n}を入力`"></v-text-field>
+    <v-row v-for="(item, index) in input_value" :key="index">
+      <v-text-field
+        v-model="input_data[index]"
+        :label="`${item}を入力`"
+      ></v-text-field>
     </v-row>
+    <v-textarea label="出力結果" variant="outlined"></v-textarea>
   </v-container>
 </template>
 
@@ -78,16 +82,18 @@
 import { Article } from "~/types/jpa_style/article";
 // import { base_ref } from "~/types/jpa_style/article";
 const default_style = "日本心理学会執筆・投稿の手びき_2015年改訂版";
+const article = new Article();
 
 //現在変数出力用として使用
 const handleButtonClick = () => {
-  const article = new Article();
   // console.log(article.title);
   // console.log(language.value);
   // console.log(authorFirstNames.value);
   // console.log(authorLastNames.value);
   getList();
-  console.log(authorList.value);
+  parsebib();
+  // console.log(authorList.value);
+  // console.log(input_data);
 };
 
 // 著者の人数に関係する処理群
@@ -121,7 +127,6 @@ const mediaChange = (e: any) => {
   console.log(e);
   switch (e) {
     case "雑誌論文":
-      const article = new Article();
       input_value.value = article.to_list();
 
       break;
@@ -148,10 +153,19 @@ const getList = () => {
   }
 };
 
+//書誌情報入力にかかわる処理群
+const input_data = ref([""]);
+const bib_data: { [label: string]: string } = {};
+const parsebib = () => {
+  for (let i = 0; i < input_data.value.length; i++) {
+    const item = input_data.value[i];
+    const label = input_value.value[i];
+    bib_data[label] = item;
+    article.perse_data(authorList.value, input_data.value);
+  }
+  console.log(bib_data);
+};
 //入力された物に関わる処理群
-interface InputData {
-  author: "as";
-}
 </script>
 
 <style></style>
