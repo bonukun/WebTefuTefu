@@ -30,6 +30,22 @@ export class Article extends base_ref {
     firstName: "",
   };
 
-  perse_data = (authors: any, input_bib: string[]) => {
+  perse_aturhors = (author_list: any) => {
+    const author_num = Object.getOwnPropertyNames(author_list).length - 1;
+    let authors_data = author_list[0].lastName + " " + author_list[0].firstName;
+
+    for (let i = 1; i < author_num; i++) {
+      authors_data +=
+        "・" + author_list[i].lastName + " " + author_list[i].firstName;
+    }
+    return authors_data;
+  };
+
+  perse_data = (author_list: any, bib_data: {}) => {
+    const a = Object.getOwnPropertyNames(author_list).length;
+
+    const authors_data = this.perse_aturhors(author_list);
+    let data: string = `${authors_data}（${bib_data.year}）．${bib_data.title}── ${bib_data.jounal}，${bib_data.volume}，${bib_data.pages}`;
+    return data;
   };
 }

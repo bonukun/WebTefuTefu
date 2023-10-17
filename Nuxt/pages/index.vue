@@ -74,7 +74,11 @@
         :label="`${item}を入力`"
       ></v-text-field>
     </v-row>
-    <v-textarea label="出力結果" variant="outlined"></v-textarea>
+    <v-textarea
+      label="出力結果"
+      variant="outlined"
+      v-model="output_data"
+    ></v-textarea>
   </v-container>
 </template>
 
@@ -155,15 +159,16 @@ const getList = () => {
 
 //書誌情報入力にかかわる処理群
 const input_data = ref([""]);
-const bib_data: { [label: string]: string } = {};
+const output_data = ref("");
+let bib_data: { [label: string]: string } = {};
 const parsebib = () => {
+  bib_data = {};
   for (let i = 0; i < input_data.value.length; i++) {
     const item = input_data.value[i];
     const label = input_value.value[i];
     bib_data[label] = item;
-    article.perse_data(authorList.value, input_data.value);
   }
-  console.log(bib_data);
+  output_data.value = article.perse_data(authorList.value, bib_data);
 };
 //入力された物に関わる処理群
 </script>
