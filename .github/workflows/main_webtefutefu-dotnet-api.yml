@@ -24,8 +24,8 @@ jobs:
 
       - name: Build with dotnet
         run: |
-        cd dotnet_api
-        dotnet build --configuration Release
+          cd dotnet_api
+          dotnet build --configuration Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/dotnet_api
