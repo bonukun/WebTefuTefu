@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
     "engines": {
-    "node": "=20.9.0"
+    "node": "^20.9.0"
    },
   "devDependencies": {
     "nuxt": "^3.9.3",
