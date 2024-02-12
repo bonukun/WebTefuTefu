@@ -6,10 +6,9 @@
 </template>
 
 <script setup lang="ts">
-const url = "秘密";
+const url = "http://localhost:8080/WeatherForecast";
 
 const datas =ref()
-
 
 const addTask = async () => {
   const { data } = await useFetch(url, {
@@ -19,6 +18,5 @@ const addTask = async () => {
   console.log("test")
   console.log(data)
 };
-
 
 </script>
