@@ -6,7 +6,8 @@
 </template>
 
 <script setup lang="ts">
-const url = "http://localhost:8080/WeatherForecast";
+const runtimeConfig = useRuntimeConfig();
+const url = `${runtimeConfig.public.apiUrl}/Test`;
 
 const datas =ref()
 
@@ -15,8 +16,6 @@ const addTask = async () => {
     method: 'get'
   });
   datas.value=data.value;
-  console.log("test")
-  console.log(data)
 };
 
 </script>
