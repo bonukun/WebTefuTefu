@@ -2,9 +2,10 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
-    apiKey: '',
+    apiKey: "",
+    apiUrl: "",
     public: {
-      apiUrl: '',
+      apiUrlBase: "",
     },
   },
-})
+});
