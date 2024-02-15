@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebTefufu.Controllers.Dtos;
-
+using WebTefufu.Domains;
+using WebTefufu.Domains.Dtos;
 namespace dotnet_api.Controllers;
 
 [ApiController]
@@ -17,6 +18,8 @@ public class BibTeXController : ControllerBase
     public string Get()
     {
         Console.WriteLine("通信しました。");
+
+
         return "Hello";
     }
 
@@ -28,6 +31,9 @@ public class BibTeXController : ControllerBase
         {
             ResultBibTeX = request.BibTeX + "を取得しました。"
         };
+        BibTeXParserInteractor interactor = new BibTeXParserInteractor();
+        var resulut_string = interactor.ParserBibTex(new RequestBibTeXParser { BibTeX=request.BibTeX});
+        res.ResultBibTeX=resulut_string.BibTeXResult;
 
         return res;
     }

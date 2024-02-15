@@ -3,17 +3,16 @@
   <p>{{ datas }}</p>
   <textarea
     v-model="bibTeXString"
-    rows="3"
-    cols="50"
+    rows="6"
+    cols="80"
     placeholder="BibTeXを入力してください"
   ></textarea>
   <br />
   <button @click="sendBibTexString">送信</button>
   <br />
-  <textarea v-model="result" rows="3" cols="50" readonly>{{ result }}</textarea>
+  <textarea v-model="result" rows="6" cols="80" readonly>{{ result }}</textarea>
   <br />
   <button @click="copyClipBord">結果をコピーする</button>
-  <button @click="testApi">TestApi</button>
 </template>
 
 <script setup lang="ts">
@@ -39,7 +38,7 @@ const sendBibTexString = async () => {
 
 const copyClipBord = () => {
   console.log("クリップボードをコピーする関数処理が実行されました。");
-  navigator.clipboard.writeText("この中身がクリップボードに書き込まれます");
+  navigator.clipboard.writeText(result.value);
 };
 
 const testApi = async () => {
