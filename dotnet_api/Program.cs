@@ -7,6 +7,7 @@ builder.Services.AddCors(options =>
                       policy  =>
                       {
                           policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
+                          policy.WithOrigins("https://thankful-cliff-02d377510.3.azurestaticapps.net").AllowAnyHeader().AllowAnyMethod();
                       });
 });
 
