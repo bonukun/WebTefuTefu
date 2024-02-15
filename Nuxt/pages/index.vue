@@ -25,7 +25,7 @@ const bibTeXString = ref();
 result.value = "ここに処理結果が表示されます";
 
 const datas = ref();
-datas.value = "いえええい";
+datas.value = "";
 
 const sendBibTexString = async () => {
   const url = apiUrl + "/BibTeX/postBibTeX";
