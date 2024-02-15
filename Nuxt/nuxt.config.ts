@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     apiUrl: "",
     public: {
       apiUrlBase: "",
+      apiDevelopUrlBase: "",
     },
   },
 });
