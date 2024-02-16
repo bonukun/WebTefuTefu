@@ -1,12 +1,15 @@
-# 文献管理システムのようなもの
+# 文献管理システム（にする予定）
 
-簡単に書誌情報を作成できるはず。
+現在のバージョン
+BiBTeX を特定形式に整形可能
 
 ## 実行環境
 
-Node 　 18.18.0
+Node 　 ^20.9.0
 
-## 実行方法
+## フロントエンド実行方法
+
+Nuxt3 を使用
 
 `cd Nuxt`
 
@@ -14,12 +17,10 @@ Node 　 18.18.0
 
 `yarn dev`
 
-## docker を使用した実行方法
+## バックエンド
 
-`docker compose up -d --build`
+\.NET 7.0 を使用
 
-`docker exec -it webtefutefu-front bash `
+`cd dotnet_api`
 
-`yarn install`
-
-`yarn dev`
+`dotnet run`
