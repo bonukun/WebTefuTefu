@@ -1,5 +1,5 @@
 <template>
-  <h1>書誌情報生成する君</h1>
+  <h1>WebTefuTefu</h1>
   <p>{{ datas }}</p>
   <textarea
     v-model="bibTeXString"
