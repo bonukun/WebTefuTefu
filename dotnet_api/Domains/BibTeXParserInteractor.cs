@@ -76,7 +76,7 @@ namespace WebTefufu.Domains
             string pages=entry.Tags["pages"].Replace("--","-");
             string outputNames = string.Join("・",nameArray);
             string formatDate = DateTime.Now.ToString("yyyy年M月d日取得");
-            bibString=$"{outputNames}、{entry.Tags["year"]}，「{entry.Tags["title"]}」『{entry.Tags["journal"]}』{entry.Tags["number"]}({entry.Tags["volume"]}): {pages}，（{formatDate}，URLまたはデータベース名）．";
+            bibString=$"{outputNames}，{entry.Tags["year"]}，「{entry.Tags["title"]}」『{entry.Tags["journal"]}』{entry.Tags["number"]}({entry.Tags["volume"]}): {pages}，（{formatDate}，URLまたはデータベース名）．";
 
         }
 
