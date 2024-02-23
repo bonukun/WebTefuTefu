@@ -17,7 +17,7 @@ namespace WebTefufu.Domains
 
         }
 
-        public ResponseBibTeXParser ParserBibTex(RequestBibTeXParser request)
+        public BibTeXParserResponse ParserBibTex(BibTeXParserRequest request)
         {
             Console.WriteLine("#############");
             Console.WriteLine(request.BibTeX);
@@ -28,7 +28,7 @@ namespace WebTefufu.Domains
             string Bibliography =BibliographyBuilder(result);
 
 
-            ResponseBibTeXParser response= new ResponseBibTeXParser{
+            BibTeXParserResponse response= new BibTeXParserResponse{
                 BibTeXResult=Bibliography
             };
             return response ;

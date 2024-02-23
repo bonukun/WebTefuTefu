@@ -2,7 +2,7 @@ namespace　WebTefufu.Domains.Dtos{
 /// <summary>
 /// コントローラーから送信されるリクエストの型を定義
 /// </summary>
-    public class RequestBibTeXParser {
+    public class BibTeXParserRequest {
         /// <summary>
         /// BibTeX
         /// </summary>

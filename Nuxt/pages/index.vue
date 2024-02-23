@@ -38,7 +38,7 @@ const sendBibTexString = async () => {
       method: "post",
       body: { bibTeX: bibTeXString.value },
     });
-    result.value = data.value.resultBibTeX;
+    result.value = data.value.bibTeXResult;
     processing.value = false;
   } catch (e) {
     console.log(e);
