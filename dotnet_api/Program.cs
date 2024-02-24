@@ -16,6 +16,7 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 
 builder.Services.AddSingleton<IBibTeXParserInteractor,BibTeXParserInteractor>();
+builder.Services.AddSingleton<IBibTeXMapConvertInteractor,BibTeXMapConvertInteractor>();
 
 
 

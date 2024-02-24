@@ -1,8 +1,8 @@
-using BibtexLibrary;
 using Microsoft.AspNetCore.Http.Features;
 using  WebTefuTefu.Domains.Dtos;
 using System;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebTefuTefu.Domains
 {
@@ -16,18 +16,21 @@ namespace WebTefuTefu.Domains
 
         }
 
-        public BibTeXParserResponse ParserBibTex(BibTeXParserRequest request)
+        public BibTeXParserResponse ParserBibTex([FromServices] IBibTeXMapConvertInteractor converter, BibTeXParserRequest request)
         {
             Console.WriteLine("#############");
             Console.WriteLine(request.BibTeX);
             string BibTeXString=ConvertSingleQuotes(request.BibTeX);
             Console.WriteLine(BibTeXString);
-            /// Todo 次のライブラリはTitleなどに全角記号が含まれていると高確率でエラー落ちするため、ライブラリの変更か自作を検討する
-            BibtexFile result=BibtexLibrary.BibtexImporter.FromString(BibTeXString);
-            string Bibliography =BibliographyBuilder(result);
+
+            var bibTeXMapConvertRequest=new BibTeXMapConvertRequest{
+                BibTeXString=BibTeXString
+            };
+            converter.BibTeXMapConvert(bibTeXMapConvertRequest);
+
 
             BibTeXParserResponse response= new BibTeXParserResponse{
-                bibTeXResult=Bibliography
+                bibTeXResult="test"
             };
             return response ;
         }
@@ -60,25 +63,25 @@ namespace WebTefuTefu.Domains
         return resultBuilder.ToString();
     }
 
-        private string BibliographyBuilder(BibtexFile bib_str){
-        string bibString="";
-        foreach (BibtexEntry entry in bib_str.Entries)
-        {
-            ///nameに関わる処理
-            string names_string = entry.Tags["author"];
-            string[] nameArray = names_string.Split(new[] {" and " }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(name=>name.Replace(",",""))
-                .Select(name=>name.Replace(" ",""))
-                .ToArray();
-            string pages=entry.Tags["pages"].Replace("--","-");
-            string outputNames = string.Join("・",nameArray);
-            string formatDate = DateTime.Now.ToString("yyyy年M月d日取得");
-            bibString=$"{outputNames}，{entry.Tags["year"]}，「{entry.Tags["title"]}」『{entry.Tags["journal"]}』{entry.Tags["number"]}({entry.Tags["volume"]}): {pages}，（{formatDate}，URLまたはデータベース名）．";
+        // private string BibliographyBuilder(BibtexFile bib_str){
+        // string bibString="";
+        // foreach (BibtexEntry entry in bib_str.Entries)
+        // {
+        //     ///nameに関わる処理
+        //     string names_string = entry.Tags["author"];
+        //     string[] nameArray = names_string.Split(new[] {" and " }, StringSplitOptions.RemoveEmptyEntries)
+        //         .Select(name=>name.Replace(",",""))
+        //         .Select(name=>name.Replace(" ",""))
+        //         .ToArray();
+        //     string pages=entry.Tags["pages"].Replace("--","-");
+        //     string outputNames = string.Join("・",nameArray);
+        //     string formatDate = DateTime.Now.ToString("yyyy年M月d日取得");
+        //     bibString=$"{outputNames}，{entry.Tags["year"]}，「{entry.Tags["title"]}」『{entry.Tags["journal"]}』{entry.Tags["number"]}({entry.Tags["volume"]}): {pages}，（{formatDate}，URLまたはデータベース名）．";
 
-        }
+        // }
 
-        return bibString;
-        }
+        // return bibString;
+        // }
 
     }
 }
