@@ -25,10 +25,11 @@ public class BibTeXController : ControllerBase
 /// <returns></returns>
     [HttpPost("postBibTeX")]
     public BibTeXParserResponse PostBibTeX(
-        [FromBody] BibTeXParserRequest request
+        [FromBody] BibTeXParserRequest request,
+        [FromServices] IBibTeXParserInteractor service
+
     ){
-        BibTeXParserInteractor interactor = new BibTeXParserInteractor();
-        var  res = interactor.ParserBibTex(request);
+        var res = service.ParserBibTex(request);
         return res;
     }
 }

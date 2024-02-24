@@ -6,7 +6,7 @@ using System.Text;
 
 namespace WebTefufu.Domains
 {
-    public class BibTeXParserInteractor
+    public class BibTeXParserInteractor :IBibTeXParserInteractor
     {
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace WebTefufu.Domains
 
 
             BibTeXParserResponse response= new BibTeXParserResponse{
-                BibTeXResult=Bibliography
+                bibTeXResult=Bibliography
             };
             return response ;
         }
