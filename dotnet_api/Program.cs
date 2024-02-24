@@ -1,4 +1,4 @@
-using WebTefufu.Domains;
+using WebTefuTefu.Domains;
 
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 

@@ -1,4 +1,4 @@
-using WebTefufu.Domains.Dtos;
+using WebTefuTefu.Domains.Dtos;
 public interface IBibTeXParserInteractor{
  public BibTeXParserResponse ParserBibTex(BibTeXParserRequest request);
 }

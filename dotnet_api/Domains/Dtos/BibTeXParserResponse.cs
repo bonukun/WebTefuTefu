@@ -1,4 +1,4 @@
-namespace　WebTefufu.Domains.Dtos{
+namespace　WebTefuTefu.Domains.Dtos{
 /// <summary>
 /// コントローラーに送信するレスポンスの型を定義
 /// </summary>

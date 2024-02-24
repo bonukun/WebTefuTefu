@@ -1,4 +1,4 @@
-namespace　WebTefufu.Domains.Dtos{
+namespace　WebTefuTefu.Domains.Dtos{
 /// <summary>
 /// コントローラーから送信されるリクエストの型を定義
 /// </summary>

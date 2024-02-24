@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using WebTefufu.Domains;
-using WebTefufu.Domains.Dtos;
+using WebTefuTefu.Domains;
+using WebTefuTefu.Domains.Dtos;
 namespace dotnet_api.Controllers;
 
 [ApiController]

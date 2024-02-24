@@ -1,14 +1,13 @@
 using BibtexLibrary;
 using Microsoft.AspNetCore.Http.Features;
-using  WebTefufu.Domains.Dtos;
+using  WebTefuTefu.Domains.Dtos;
 using System;
 using System.Text;
 
-namespace WebTefufu.Domains
+namespace WebTefuTefu.Domains
 {
     public class BibTeXParserInteractor :IBibTeXParserInteractor
     {
-
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -42,7 +41,6 @@ namespace WebTefufu.Domains
         {
             char currentChar = input[i];
 
-
             if (currentChar == '\'' || currentChar=='\"')
             {
                 // 奇数番目のシングルクォートを左中括弧に、偶数番目を右中括弧に変換
@@ -70,9 +68,9 @@ namespace WebTefufu.Domains
             ///nameに関わる処理
             string names_string = entry.Tags["author"];
             string[] nameArray = names_string.Split(new[] {" and " }, StringSplitOptions.RemoveEmptyEntries)
-                                   .Select(name=>name.Replace(",",""))
-                                   .Select(name=>name.Replace(" ",""))
-                                   .ToArray();
+                .Select(name=>name.Replace(",",""))
+                .Select(name=>name.Replace(" ",""))
+                .ToArray();
             string pages=entry.Tags["pages"].Replace("--","-");
             string outputNames = string.Join("・",nameArray);
             string formatDate = DateTime.Now.ToString("yyyy年M月d日取得");
