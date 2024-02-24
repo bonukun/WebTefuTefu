@@ -26,7 +26,6 @@ namespace WebTefuTefu.Domains
             BibtexFile result=BibtexLibrary.BibtexImporter.FromString(BibTeXString);
             string Bibliography =BibliographyBuilder(result);
 
-
             BibTeXParserResponse response= new BibTeXParserResponse{
                 bibTeXResult=Bibliography
             };
