@@ -4,11 +4,18 @@ namespace WebTefuTefu.Domains.Models
     /// 著者のデータ型
     /// </summary>
     public class AuthorName{
+
+        /// <summary>
+        /// フルネーム
+        /// </summary>
+        /// <value></value>
+        public string FullName{get; set;}
+
         /// <summary>
         /// ファーストネーム
         /// </summary>
         /// <value></value>
-        public string FirstName{get; set;}
+        public string? FirstName{get; set;}
 
         /// <summary>
         /// ミドルネーム。複数ある可能性があるため配列にする
@@ -20,6 +27,6 @@ namespace WebTefuTefu.Domains.Models
         /// ラストネーム
         /// </summary>
         /// <value></value>
-        public string LastName{get; set;}
+        public string? LastName{get; set;}
     }
 }

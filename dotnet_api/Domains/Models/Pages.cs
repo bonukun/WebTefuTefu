@@ -7,11 +7,11 @@ namespace WebTefuTefu.Domains.Models{
         /// 最初のページ
         /// </summary>
         /// <value></value>
-        public int FirstPage{get;set;}
+        public string FirstPage{get;set;}
         /// <summary>
         /// 後のページ
         /// </summary>
         /// <value></value>
-        public int LastPage{get;set;}
+        public string LastPage{get;set;}
     }
 }

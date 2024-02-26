@@ -35,7 +35,7 @@ namespace WebTefuTefu.Domains.Models
         ///　章番号
         /// </summary>
         /// <value></value>
-        public int? Chapter{get;set;}
+        public string? Chapter{get;set;}
 
         /// <summary>
         /// 書籍の版
@@ -95,7 +95,7 @@ namespace WebTefuTefu.Domains.Models
         /// 雑誌テクニカルレポートの号数
         /// </summary>
         /// <value></value>
-        public int?  Number {get;set;}
+        public string?  Number {get;set;}
 
         /// <summary>
         /// 会議の主催者
@@ -149,13 +149,33 @@ namespace WebTefuTefu.Domains.Models
         /// 雑誌または、書籍の関数
         /// </summary>
         /// <value></value>
-        public int? Volume  {get;set;}
+        public string? Volume  {get;set;}
 
         /// <summary>
         /// 出版年
         /// </summary>
         /// <value></value>
-        public int? Year {get;set;}
+        public string? Year {get;set;}
+
+        /// <summary>
+        /// 一般的ではないBibTeXフィールドを定義する。
+        /// </summary>
+        /// <value></value>
+        public IEnumerable<string>? Others{get;set;}
+
+        /// <summary>
+        /// @から始まる文字列
+        /// </summary>
+        /// <value></value>
+        public string MediaType {get; set;}
+
+        /// <summary>
+        /// ID
+        /// </summary>
+        /// <value></value>
+        public string Id {get; set;}
+
+
     }
 
 }

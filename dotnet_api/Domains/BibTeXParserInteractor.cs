@@ -18,16 +18,12 @@ namespace WebTefuTefu.Domains
 
         public BibTeXParserResponse ParserBibTex([FromServices] IBibTeXMapConvertInteractor converter, BibTeXParserRequest request)
         {
-            Console.WriteLine("#############");
-            Console.WriteLine(request.BibTeX);
             string BibTeXString=ConvertSingleQuotes(request.BibTeX);
-            Console.WriteLine(BibTeXString);
 
             var bibTeXMapConvertRequest=new BibTeXMapConvertRequest{
                 BibTeXString=BibTeXString
             };
             converter.BibTeXMapConvert(bibTeXMapConvertRequest);
-
 
             BibTeXParserResponse response= new BibTeXParserResponse{
                 bibTeXResult="test"
