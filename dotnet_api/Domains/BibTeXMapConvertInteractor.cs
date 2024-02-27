@@ -54,8 +54,8 @@ namespace WebTefuTefu.Domains{
             foreach (var line in lines){
                 int separatorIndex = line.IndexOf('=');
                 if(separatorIndex > 0){
-                    string key = line.Substring(0, separatorIndex).Trim(' ', '"', ',', '}','{');
-                    string value = line.Substring(separatorIndex + 1).Trim(' ', '"', ',', '}','{');
+                    string key = line.Substring(0, separatorIndex).Trim(' ', '"', ',', '}','{','\t');
+                    string value = line.Substring(separatorIndex + 1).Trim(' ', '"', ',', '}','{','\t');
                     BibTeXMap.Add(key,value);
                 }
             }
