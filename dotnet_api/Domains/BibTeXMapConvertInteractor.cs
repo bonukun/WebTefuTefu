@@ -121,6 +121,7 @@ namespace WebTefuTefu.Domains{
 
         private Pages CreatePages(string page){
             Pages pages = new Pages();
+            page=page.Replace("--","-");
             string[] dividePages  = page.Split("-");
             pages.FirstPage = dividePages[0];
             pages.LastPage = dividePages[1];
