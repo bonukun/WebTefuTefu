@@ -1,3 +1,5 @@
+using WebTefuTefu.Domains;
+
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,11 @@ builder.Services.AddCors(options =>
 });
 
 // Add services to the container.
+
+builder.Services.AddSingleton<IBibTeXParserInteractor,BibTeXParserInteractor>();
+builder.Services.AddSingleton<IBibTeXMapConvertInteractor,BibTeXMapConvertInteractor>();
+
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -1,11 +1,11 @@
-namespace　WebTefufu.Domains.Dtos{
+namespace　WebTefuTefu.Domains.Dtos{
 /// <summary>
 /// コントローラーに送信するレスポンスの型を定義
 /// </summary>
-    public class ResponseBibTeXParser {
+    public class BibTeXParserResponse {
         /// <summary>
         /// BibTeX
         /// </summary>
-        public string BibTeXResult {get; set;}
+        public string bibTeXResult {get; set;}
     }
 }
