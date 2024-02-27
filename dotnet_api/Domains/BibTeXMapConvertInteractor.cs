@@ -13,10 +13,6 @@ namespace WebTefuTefu.Domains{
         public BibTeXMapConvertResponse BibTeXMapConvert(BibTeXMapConvertRequest request){
             Dictionary<string,string> bibtexDictionary = GetDictionaryFromBibTeX(request.BibTeXString);
             var bibTeXMap =new BibTeXMap();
-            MemberInfo[] members = typeof(BibTeXMap).GetMembers();
-            foreach(MemberInfo member in members){
-                Console.WriteLine($"タイプ：{member.MemberType}ーー名前：{member.Name}");
-            }
 
             foreach(var key in bibtexDictionary.Keys){
                 if(key=="author"){
