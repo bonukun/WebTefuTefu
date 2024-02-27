@@ -56,31 +56,18 @@ namespace WebTefuTefu.Domains
 
         return resultBuilder.ToString();
     }
-        ///
+        /// <summary>
+        /// 暫定対応の関数
+        /// </summary>
+        /// <param name="bibtex"></param>
+        /// <returns></returns>
         private string BibliographyBuilder( BibTeXMap bibtex){
         string name = string.Join("・",bibtex.Authors.Select(e=>e.FullName.Replace(",","").Replace(" ","")).ToArray());
         string page = string.Join("-",bibtex.Pages?.FirstPage,bibtex.Pages?.LastPage)??"ページ取得不可能";
         string formatDate = DateTime.Now.ToString("yyyy年M月d日取得");
         string bibString=$"{name}，{bibtex.Year}，「{bibtex.Title}」『{bibtex.Journal}』{bibtex.Number}({bibtex.Volume}): {page}，（{formatDate}，{bibtex.URL}）．";
 
-
-        // foreach (BibtexEntry entry in bib_str.Entries)
-        // {
-        //     ///nameに関わる処理
-        //     string names_string = entry.Tags["author"];
-        //     string[] nameArray = names_string.Split(new[] {" and " }, StringSplitOptions.RemoveEmptyEntries)
-        //         .Select(name=>name.Replace(",",""))
-        //         .Select(name=>name.Replace(" ",""))
-        //         .ToArray();
-        //     string pages=entry.Tags["pages"].Replace("--","-");
-        //     string outputNames = string.Join("・",nameArray);
-        //     string formatDate = DateTime.Now.ToString("yyyy年M月d日取得");
-        //     bibString=$"{outputNames}，{entry.Tags["year"]}，「{entry.Tags["title"]}」『{entry.Tags["journal"]}』{entry.Tags["number"]}({entry.Tags["volume"]}): {pages}，（{formatDate}，URLまたはデータベース名）．";
-
-        // }
-
         return bibString;
         }
-
     }
 }
