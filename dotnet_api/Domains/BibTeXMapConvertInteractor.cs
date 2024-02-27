@@ -105,6 +105,11 @@ namespace WebTefuTefu.Domains{
         return resultBuilder.ToString();
         }
 
+        /// <summary>
+        /// 著者を解析する
+        /// </summary>
+        /// <param name="authorNamesString"></param>
+        /// <returns></returns>
         private IEnumerable<AuthorName> CreateAuthorName(string authorNamesString){
             List<AuthorName> authorNames =new List<AuthorName>();
             string[] nameArray = authorNamesString.Split(new[] {" and " }, StringSplitOptions.RemoveEmptyEntries).ToArray();
@@ -119,6 +124,11 @@ namespace WebTefuTefu.Domains{
 
         }
 
+        /// <summary>
+        ///  ページを解析する
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         private Pages CreatePages(string page){
             Pages pages = new Pages();
             page=page.Replace("--","-");
