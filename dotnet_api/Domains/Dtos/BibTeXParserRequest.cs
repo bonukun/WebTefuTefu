@@ -1,4 +1,4 @@
-namespace　WebTefuTefu.Domains.Dtos{
+namespace WebTefuTefu.Domains.Dtos{
 /// <summary>
 /// コントローラーから送信されるリクエストの型を定義
 /// </summary>
@@ -6,6 +6,6 @@ namespace　WebTefuTefu.Domains.Dtos{
         /// <summary>
         /// BibTeX
         /// </summary>
-        public string BibTeX {get; set;}
+        public string BibTeXString {get; set;}
     }
 }

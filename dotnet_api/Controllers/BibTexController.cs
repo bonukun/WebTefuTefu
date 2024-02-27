@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using WebTefuTefu.Domains;
 using WebTefuTefu.Domains.Dtos;
 namespace dotnet_api.Controllers;
 
@@ -31,6 +30,15 @@ public class BibTeXController : ControllerBase
 
     ){
         var res = service.ParserBibTex(converter,request);
+        return res;
+    }
+
+    [HttpPost("convertBibTeX")]
+    public BibTeXMapConvertResponse parseBibTeX(
+        [FromBody] BibTeXMapConvertRequest request,
+        [FromServices] IBibTeXMapConvertInteractor service
+    ){
+        var res = service.BibTeXMapConvert(request);
         return res;
     }
 }

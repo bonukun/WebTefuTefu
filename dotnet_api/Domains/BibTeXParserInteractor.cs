@@ -1,8 +1,7 @@
-using Microsoft.AspNetCore.Http.Features;
 using  WebTefuTefu.Domains.Dtos;
-using System;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using WebTefuTefu.Domains.Models;
 
 namespace WebTefuTefu.Domains
 {
@@ -18,17 +17,16 @@ namespace WebTefuTefu.Domains
 
         public BibTeXParserResponse ParserBibTex([FromServices] IBibTeXMapConvertInteractor converter, BibTeXParserRequest request)
         {
-            string BibTeXString=ConvertSingleQuotes(request.BibTeX);
+            string BibTeXString=ConvertSingleQuotes(request.BibTeXString);
 
             var bibTeXMapConvertRequest=new BibTeXMapConvertRequest{
                 BibTeXString=BibTeXString
             };
-            converter.BibTeXMapConvert(bibTeXMapConvertRequest);
-
-            BibTeXParserResponse response= new BibTeXParserResponse{
-                bibTeXResult="test"
+            var bibTexMap = converter.BibTeXMapConvert(bibTeXMapConvertRequest).BibTeXMap;
+            var res = new BibTeXParserResponse{
+                bibTeXResult=BibliographyBuilder(bibTexMap)
             };
-            return response ;
+            return res ;
         }
 
         private string ConvertSingleQuotes(string input)
@@ -58,9 +56,14 @@ namespace WebTefuTefu.Domains
 
         return resultBuilder.ToString();
     }
+        ///
+        private string BibliographyBuilder( BibTeXMap bibtex){
+        string name = string.Join("・",bibtex.Authors.Select(e=>e.FullName.Replace(",","").Replace(" ","")).ToArray());
+        string page = string.Join("-",bibtex.Pages?.FirstPage,bibtex.Pages?.LastPage)??"ページ取得不可能";
+        string formatDate = DateTime.Now.ToString("yyyy年M月d日取得");
+        string bibString=$"{name}，{bibtex.Year}，「{bibtex.Title}」『{bibtex.Journal}』{bibtex.Number}({bibtex.Volume}): {page}，（{formatDate}，{bibtex.URL}）．";
 
-        // private string BibliographyBuilder(BibtexFile bib_str){
-        // string bibString="";
+
         // foreach (BibtexEntry entry in bib_str.Entries)
         // {
         //     ///nameに関わる処理
@@ -76,8 +79,8 @@ namespace WebTefuTefu.Domains
 
         // }
 
-        // return bibString;
-        // }
+        return bibString;
+        }
 
     }
 }

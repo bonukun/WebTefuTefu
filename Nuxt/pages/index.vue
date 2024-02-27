@@ -36,7 +36,7 @@ const sendBibTexString = async () => {
   try {
     const { data } = await useFetch(url, {
       method: "post",
-      body: { bibTeX: bibTeXString.value },
+      body: { bibTeXString: bibTeXString.value },
     });
     result.value = data.value.bibTeXResult;
     processing.value = false;
