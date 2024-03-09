@@ -7,22 +7,23 @@ namespace WebTefuTefu.Domains
 {
     public class BibTeXParserInteractor :IBibTeXParserInteractor
     {
+        private readonly BibTeXMapConvertInteractor _converter;
         /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <value></value>
         public BibTeXParserInteractor(){
-
+            _converter = new BibTeXMapConvertInteractor();
         }
 
-        public BibTeXParserResponse ParserBibTex([FromServices] IBibTeXMapConvertInteractor converter, BibTeXParserRequest request)
+        public BibTeXParserResponse ParserBibTex(BibTeXParserRequest request)
         {
             string BibTeXString=ConvertSingleQuotes(request.BibTeXString);
 
             var bibTeXMapConvertRequest=new BibTeXMapConvertRequest{
                 BibTeXString=BibTeXString
             };
-            var bibTexMap = converter.BibTeXMapConvert(bibTeXMapConvertRequest).BibTeXMap;
+            var bibTexMap = _converter.BibTeXMapConvert(bibTeXMapConvertRequest).BibTeXMap;
             var res = new BibTeXParserResponse{
                 bibTeXResult=BibliographyBuilder(bibTexMap)
             };

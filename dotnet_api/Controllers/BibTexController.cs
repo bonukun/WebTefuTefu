@@ -23,13 +23,12 @@ public class BibTeXController : ControllerBase
 /// <param name="request"></param>
 /// <returns></returns>
     [HttpPost("postBibTeX")]
-    public BibTeXParserResponse PostBibTeX(
+    public  BibTeXParserResponse PostBibTeX(
         [FromBody] BibTeXParserRequest request,
-        [FromServices] IBibTeXParserInteractor service,
-        [FromServices] IBibTeXMapConvertInteractor converter
+        [FromServices] IBibTeXParserInteractor service
 
     ){
-        var res = service.ParserBibTex(converter,request);
+        var res = service.ParserBibTex(request);
         return res;
     }
 
