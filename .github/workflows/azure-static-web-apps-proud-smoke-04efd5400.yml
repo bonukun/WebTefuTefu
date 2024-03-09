@@ -1,5 +1,4 @@
 # 開発環境パイプライン
-)
 name: Azure Static Web Apps CI/CD
 
 on:
@@ -10,7 +9,6 @@ on:
     types: [opened, synchronize, reopened, closed]
     branches:
       - develop
-)
 
 jobs:
   build_and_deploy_job:
@@ -19,7 +17,7 @@ jobs:
     name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v4
-)
+
         with:
           submodules: true
           lfs: false
