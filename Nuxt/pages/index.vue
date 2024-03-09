@@ -1,19 +1,43 @@
 <template>
-  <h1>WebTefuTefu</h1>
-  <p>{{ datas }}</p>
-  <textarea
-    v-model="bibTeXString"
-    rows="6"
-    cols="80"
-    placeholder="BibTeXを入力してください"
-  ></textarea>
-  <br />
-  <button @click="sendBibTexString">送信</button>
-  <p v-if="processing">処理中...</p>
-  <br />
-  <textarea v-model="result" rows="6" cols="80" readonly>{{ result }}</textarea>
-  <br />
-  <button @click="copyClipBord">結果をコピーする</button>
+  <Header />
+  <div class="container">
+    <p>{{ datas }}</p>
+    <textarea
+      class="form-control"
+      v-model="bibTeXString"
+      rows="6"
+      cols="80"
+      placeholder="BibTeXを入力してください"
+    ></textarea>
+    <div class="buttons-arrangement">
+      <button
+        @click="sendBibTexString"
+        class="btn btn-outline-primary"
+        type="button"
+      >
+        送信
+      </button>
+    </div>
+    <p v-if="processing">処理中...</p>
+    <br />
+    <textarea
+      class="form-control"
+      v-model="result"
+      rows="6"
+      cols="80"
+      readonly
+      >{{ result }}</textarea
+    >
+    <div class="buttons-arrangement">
+      <button
+        @click="copyClipBord"
+        class="btn btn-outline-primary"
+        type="button"
+      >
+        結果をコピーする
+      </button>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -62,3 +86,13 @@ const testApi = async () => {
   console.log(data);
 };
 </script>
+
+<style>
+button {
+}
+
+.buttons-arrangement {
+  padding-top: 10px;
+  text-align: right;
+}
+</style>
