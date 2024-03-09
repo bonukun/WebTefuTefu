@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h2>WebTefuTefu</h2>
+    <h2>WebTefuTefu {{ version }}</h2>
     <nav>
       <ul>
         <!-- 他のリンクを追加 -->
@@ -9,6 +9,11 @@
     </nav>
   </header>
 </template>
+
+<script setup lang="ts">
+const runtimeConfig = useRuntimeConfig();
+const version = runtimeConfig.public.version;
+</script>
 
 <style scoped>
 header {
