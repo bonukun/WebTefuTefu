@@ -9,6 +9,17 @@
       cols="80"
       placeholder="BibTeXを入力してください"
     ></textarea>
+
+    <div
+      class="form-group"
+      style="display: flex"
+      v-for="bibtexField in bibtexFields"
+    >
+      <label class="col-sm-2 control-label">{{ bibtexField }}</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" />
+      </div>
+    </div>
     <div class="buttons-arrangement">
       <button
         @click="sendBibTexString"
@@ -41,12 +52,18 @@
 </template>
 
 <script setup lang="ts">
+import { BibTeXMap } from "../types/BibtexMap";
+
 const runtimeConfig = useRuntimeConfig();
 const apiUrl = runtimeConfig.public.apiUrlBase;
 const url = apiUrl + "/Test";
 const result = ref();
 const bibTeXString = ref();
 const processing = ref();
+
+const bibTexMap = new BibTeXMap();
+const bibtexFields = ref(bibTexMap.getMemberVariableNames());
+
 processing.value = false;
 result.value = "ここに処理結果が表示されます";
 
@@ -74,6 +91,8 @@ const sendBibTexString = async () => {
 
 const copyClipBord = () => {
   console.log("クリップボードをコピーする関数処理が実行されました。");
+  console.log(bibtexFields.value);
+
   navigator.clipboard.writeText(result.value);
 };
 
@@ -95,4 +114,9 @@ button {
   padding-top: 10px;
   text-align: right;
 }
+
+.form-group {
+  padding: 10px;
+}
 </style>
+../types/BibTexMap

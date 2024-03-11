@@ -1,7 +1,7 @@
 import { Pages } from "./Pages";
 import { AuthorName } from "./AuthorName";
 
-class BibTeXMap {
+export class BibTeXMap {
   // 住所
   public Address?: string = "取得不能";
 
@@ -94,4 +94,8 @@ class BibTeXMap {
 
   // ID
   public Id: string = "";
+
+  getMemberVariableNames(): string[] {
+    return Object.keys(this);
+  }
 }
