@@ -9,13 +9,49 @@
       cols="80"
       placeholder="BibTeXを入力してください"
     ></textarea>
-
+    <div class="author-input-field">
+      <h3>著者入力</h3>
+      <div class="form-group" v-for="field in authorNumber" :key="field">
+        <p style="margin-bottom: 0px">第{{ field }}著者</p>
+        <div class="row">
+          <div class="col-4"><input class="form-control" type="text" /></div>
+          <div class="col-4"><input class="form-control" type="text" /></div>
+          <div class="col-4"><input class="form-control" type="text" /></div>
+        </div>
+      </div>
+    </div>
+    <ButtonsAmountButton
+      @increase="authorIncrease"
+      @decrease="authorDecrease"
+    />
+    <div>
+      <hr />
+    </div>
     <div
-      class="form-group"
+      class="row input-bib"
       style="display: flex"
       v-for="bibtexField in bibtexFields"
     >
-      <label class="col-sm-2 control-label">{{ bibtexField }}</label>
+      <label
+        class="col-sm-2 control-label"
+        :class="{ 'text-danger': bibtexField === 'Year' }"
+        >{{ bibtexField }}</label
+      >
+      <div class="col-sm-10">
+        <input class="form-control" style="width: 70%" type="text" />
+      </div>
+    </div>
+    <div>
+      <hr />
+    </div>
+    <div class="form-group" style="display: flex">
+      <label class="col-sm-2 control-label">書式選択</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" />
+      </div>
+    </div>
+    <div class="form-group" style="display: flex">
+      <label class="col-sm-2 control-label">メディア選択</label>
       <div class="col-sm-10">
         <input class="form-control" type="text" />
       </div>
@@ -60,10 +96,14 @@ const url = apiUrl + "/Test";
 const result = ref();
 const bibTeXString = ref();
 const processing = ref();
-
+const authorNumber: Ref<number> = ref(1);
 const bibTexMap = new BibTeXMap();
-const bibtexFields = ref(bibTexMap.getMemberVariableNames());
 
+const bibtexFields = ref(
+  bibTexMap
+    .getMemberVariableNames()
+    .filter((field) => field !== "Author" && field !== "Editor")
+);
 processing.value = false;
 result.value = "ここに処理結果が表示されます";
 
@@ -104,12 +144,19 @@ const testApi = async () => {
   data.value = data.value;
   console.log(data);
 };
+
+const authorIncrease = () => {
+  authorNumber.value += 1;
+};
+
+const authorDecrease = () => {
+  if (authorNumber.value != 1) {
+    authorNumber.value -= 1;
+  }
+};
 </script>
 
 <style>
-button {
-}
-
 .buttons-arrangement {
   padding-top: 10px;
   text-align: right;
@@ -117,6 +164,14 @@ button {
 
 .form-group {
   padding: 10px;
+}
+
+.style-input-field {
+  display: flex;
+}
+
+.input-bib {
+  margin-top: 10px;
 }
 </style>
 ../types/BibTexMap
