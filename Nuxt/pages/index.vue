@@ -9,14 +9,30 @@
       cols="80"
       placeholder="BibTeXを入力してください"
     ></textarea>
+    <InputsInputForm placeHolder="BibTeXを入力してください。" />
     <div class="author-input-field">
       <h3>著者入力</h3>
+
       <div class="form-group" v-for="field in authorNumber" :key="field">
         <p style="margin-bottom: 0px">第{{ field }}著者</p>
         <div class="row">
-          <div class="col-4"><input class="form-control" type="text" /></div>
-          <div class="col-4"><input class="form-control" type="text" /></div>
-          <div class="col-4"><input class="form-control" type="text" /></div>
+          <div class="col-4">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="姓 (LastName)"
+            />
+          </div>
+          <div class="col-4">
+            <input class="form-control" type="text" placeholder="middleName" />
+          </div>
+          <div class="col-4">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="名 (FirstName)"
+            />
+          </div>
         </div>
       </div>
     </div>

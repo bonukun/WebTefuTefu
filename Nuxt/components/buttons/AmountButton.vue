@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" setup>
 defineEmits(["increase", "decrease"]);
 </script>
 
