@@ -2,44 +2,24 @@
   <Header />
   <div class="container">
     <p>{{ datas }}</p>
-    <textarea
-      class="form-control"
-      v-model="bibTeXString"
-      rows="6"
-      cols="80"
-      placeholder="BibTeXを入力してください"
-    ></textarea>
-    <InputsInputForm placeHolder="BibTeXを入力してください。" />
+    <CustomInputsInputForm
+      placeHolder="BibTeXを入力してください。"
+      @change="getBibtexString"
+    />
     <div class="author-input-field">
       <h3>著者入力</h3>
-
+      <InputsCustomSelectBox />
+      <ButtonsAmountButton
+        @increase="authorIncrease"
+        @decrease="authorDecrease"
+      />
       <div class="form-group" v-for="field in authorNumber" :key="field">
         <p style="margin-bottom: 0px">第{{ field }}著者</p>
-        <div class="row">
-          <div class="col-4">
-            <input
-              class="form-control"
-              type="text"
-              placeholder="姓 (LastName)"
-            />
-          </div>
-          <div class="col-4">
-            <input class="form-control" type="text" placeholder="middleName" />
-          </div>
-          <div class="col-4">
-            <input
-              class="form-control"
-              type="text"
-              placeholder="名 (FirstName)"
-            />
-          </div>
-        </div>
+        <input class="form-control" type="text" placeholder="姓 (LastName)" />
+        <input class="form-control" type="text" placeholder="middleName" />
+        <input class="form-control" type="text" placeholder="名 (FirstName)" />
       </div>
     </div>
-    <ButtonsAmountButton
-      @increase="authorIncrease"
-      @decrease="authorDecrease"
-    />
     <div>
       <hr />
     </div>
@@ -115,6 +95,11 @@ const processing = ref();
 const authorNumber: Ref<number> = ref(1);
 const bibTexMap = new BibTeXMap();
 
+const getBibtexString = (data: string) => {
+  console.log(data);
+  bibTeXString.value = data;
+};
+
 const bibtexFields = ref(
   bibTexMap
     .getMemberVariableNames()
@@ -173,6 +158,9 @@ const authorDecrease = () => {
 </script>
 
 <style>
+.container {
+  text-align: center;
+}
 .buttons-arrangement {
   padding-top: 10px;
   text-align: right;

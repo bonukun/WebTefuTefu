@@ -6,6 +6,7 @@
     cols="80"
     rows="5"
     :placeholder="props.placeHolder"
+    @input="onchange"
   ></textarea>
 </template>
 
@@ -15,6 +16,15 @@ interface Props {
   placeHolder: string;
 }
 const props = withDefaults(defineProps<Props>(), { placeHolder: "" });
+
+type Emits = {
+  (event: "change", value: string): void;
+};
+const emits = defineEmits<Emits>();
+const onchange = (event: any) => {
+  console.log("発火");
+  emits("change", event.target.value);
+};
 </script>
 
 <style>
